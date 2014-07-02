@@ -10,6 +10,8 @@ class HTTPClient {
 		*. CURLOPT_POST:             TRUE to do a regular HTTP POST.
 		*. CURLOPT_POSTFIELDS:       The full data to post in a HTTP "POST" operation.
 		*. CURLOPT_COOKIEFILE:       The name of the file containing the cookie data.
+		*. CURLOPT_RETURNTRANSFER:   TRUE to return the transfer as a string instead of outputting it out directly.
+		*. CURLOPT_FOLLOWLOCATION:   TRUE to follow any "Location: " header that the server sends as part of the HTTP header.
 		
 		Docs on PHP.net:
 		http://www.php.net/manual/ru/function.curl-setopt.php
@@ -26,18 +28,16 @@ class HTTPClient {
 		curl_setopt($this->curl, CURLOPT_TIMEOUT, 120);
 		curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 120);
 		curl_setopt($this->curl, CURLOPT_FOLLOWLOCATION, FALSE);
-		curl_setopt($this->curl, CURLOPT_PROXY, "127.0.0.1:8080");
 		curl_setopt($this->curl, CURLOPT_COOKIEFILE, '');
 	}
 
 	public function do_request() {
 		$result = curl_exec($this->curl);
-		
 		if (!$result) {
 			$this->curl_errors[] = curl_error($this->curl)." (".curl_errno($this->curl).").";
 			return false;
 		}
-		else return $result;
+		return $result;
 	}
 
 	public function set_url($url) {
