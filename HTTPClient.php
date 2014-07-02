@@ -16,6 +16,11 @@ class HTTPClient {
 		Docs on PHP.net:
 		http://www.php.net/manual/ru/function.curl-setopt.php
 	*/
+	
+	// Default parameters:
+	const DEFAULT_TIMEOUT = 120;
+	const DEFAULT_CONNCECT_TIMEOUT = 120;
+	const DEFAULT_USER_AGENT = "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0";
 
 	public function __construct($url = NULL) {
 
@@ -25,8 +30,9 @@ class HTTPClient {
 		// Default cURL settings:
 		curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, TRUE);
 		curl_setopt($this->curl, CURLOPT_HEADER, TRUE);
-		curl_setopt($this->curl, CURLOPT_TIMEOUT, 120);
-		curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 120);
+		curl_setopt($this->curl, CURLOPT_TIMEOUT, self::DEFAULT_TIMEOUT);
+		curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, self::DEFAULT_CONNCECT_TIMEOUT);
+		curl_setopt($this->curl, CURLOPT_USERAGENT, self::DEFAULT_USER_AGENT);
 		curl_setopt($this->curl, CURLOPT_FOLLOWLOCATION, FALSE);
 		curl_setopt($this->curl, CURLOPT_COOKIEFILE, '');
 	}
