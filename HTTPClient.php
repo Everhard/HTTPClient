@@ -29,7 +29,7 @@ class HTTPClient {
 		
 		// Default cURL settings:
 		curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($this->curl, CURLOPT_HEADER, TRUE);
+		curl_setopt($this->curl, CURLOPT_HEADER, FALSE);
 		curl_setopt($this->curl, CURLOPT_TIMEOUT, self::DEFAULT_TIMEOUT);
 		curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, self::DEFAULT_CONNCECT_TIMEOUT);
 		curl_setopt($this->curl, CURLOPT_USERAGENT, self::DEFAULT_USER_AGENT);
