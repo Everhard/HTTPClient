@@ -68,6 +68,10 @@ class HTTPClient {
 	public function close_client() {
 		curl_close($this->curl);
 	}
+
+	public function has_errors() {
+		return $curl_errors ? true : false;
+	}
 	
 	private $url;
 	private $user_agent;
